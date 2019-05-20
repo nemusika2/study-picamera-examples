@@ -31,6 +31,7 @@ class FaceDetector(object):
     def process_image(self, frame):
         # opencvでframe(カラー画像)をグレースケールに変換
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        font = cv2.FONT_HERSHEY_SIMPLEX
 
         # 上記でグレースケールに変換したものをインスタンス化した顔分類器の
         # detectMultiScaleメソッドで処理し、認識した顔の座標情報を取得する
@@ -40,7 +41,6 @@ class FaceDetector(object):
         # 顔の位置を描画する
         for (x,y,w,h) in faces:
             cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
-            font = cv2.FONT_HERSHEY_SIMPLEX
             cv2.putText(img,str(faces),(10,500), font, 4,(255,255,255),2,cv2.LINE_AA)
 
         # frameを戻り値として返す
